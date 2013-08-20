@@ -34,34 +34,38 @@
                             &\intertext{
                                 Now, note that the firs term in the sum is $1$, so for convenience we will write this term explicitly}                          \\
                             &=  1 + \sum_{n = 1}^{\infty} \binom{\frac{1}{2}}{n} (-4z)^{n}                                                                          \\
-                            &=  1 + \sum_{n = 1}^{\infty} \frac{ \frac{1}{2} (\frac{1}{2}-1) (\frac{1}{2}-2) \cdots (\frac{1}{2}-(n+1)) }{n!} (-4z)^{n}             \\
-                            &=  1 + \sum_{n = 1}^{\infty} \frac{ \frac{1}{2} (- \frac{1}{2}) (-\frac{3}{2}) \cdots (-\frac{2n + 1}{2}) }{n!} (-4z)^{n}              \\
-                            &=  1 + \sum_{n = 1}^{\infty} (-1)^{n-1} \frac{ \frac{1}{2} (\frac{1}{2}) (\frac{3}{2}) \cdots (\frac{2n + 1}{2}) }{n!} (-4z)^{n}       \\
-                            &=  1 + \sum_{n = 1}^{\infty} (-1)^{(2n-1)} \frac{ \frac{1}{2} (\frac{1}{2}) (\frac{3}{2}) \cdots (\frac{2n + 1}{2}) }{n!} (4z)^{n}     \\
-                            &=  1 - \sum_{n = 1}^{\infty} \paren{\frac{1}{2^n}} \frac{ 1 \cdot 1 \cdot 3 \cdot 5 \cdots (2n + 1) }{n!} (4z)^{n}                    \\
-                            &=  1 - \sum_{n = 1}^{\infty} \paren{\frac{1}{2^n}} \frac{ 1 \cdot 3 \cdot 5 \cdots (2n + 1) }{n!} 2^{2n} (z)^{n}                      \\
-                            &=  1 - \sum_{n = 1}^{\infty} \paren{2^n} \frac{ 1 \cdot 3 \cdot 5 \cdots (2n + 1) }{n!} (z)^{n}                                       \\
+                            &=  1 + \sum_{n = 1}^{\infty} \frac{ \frac{1}{2} (\frac{1}{2}-1) (\frac{1}{2}-2) \cdots (\frac{1}{2}-(n-11)) }{n!} (-4z)^{n}             \\
+                            &=  1 + \sum_{n = 1}^{\infty} \frac{ \frac{1}{2} (- \frac{1}{2}) (-\frac{3}{2}) \cdots (-\frac{2n - 3}{2}) }{n!} (-4z)^{n}              \\
+                            &=  1 + \sum_{n = 1}^{\infty} (-1)^{n-1} \frac{ \frac{1}{2} (\frac{1}{2}) (\frac{3}{2}) \cdots (\frac{2n - 3}{2}) }{n!} (-4z)^{n}       \\
+                            &=  1 + \sum_{n = 1}^{\infty} (-1)^{(2n-1)} \frac{ \frac{1}{2} (\frac{1}{2}) (\frac{3}{2}) \cdots (\frac{2n -3 }{2}) }{n!} (4z)^{n}     \\
+                            &=  1 - \sum_{n = 1}^{\infty} \paren{\frac{1}{2^n}} \frac{ 1 \cdot 1 \cdot 3 \cdot 5 \cdots (2n - 3) }{n!} (4z)^{n}                    \\
+                            &=  1 - \sum_{n = 1}^{\infty} \paren{\frac{1}{2^n}} \frac{ 1 \cdot 3 \cdot 5 \cdots (2n - 3) }{n!} 2^{2n} (z)^{n}                      \\
+                            &=  1 - \sum_{n = 1}^{\infty} \paren{2^n} \frac{ 1 \cdot 3 \cdot 5 \cdots (2n - 3) }{n!} (z)^{n}                                       \\
                             &\intertext{
-                                Note that the product in the fraction's numerator is just the product of the first $n+1$ odd numbers, and remember that
-                                the product of the first $n+1$ even numbers can be written as $2^{n+1}(n+1)!$. So, given this, we can write the product of the
-                                first $n+1$ odd numbers as $\frac{(2n+2)!}{2^{n+1}(n+1)!}$. So, we can now write the previous sum as}
-                            &=  1 - \sum_{n = 1}^{\infty} \paren{2^n} \frac{(2n+2)!}{2^{n+1}(n+1)!} \frac{1}{n!} (z)^{n}                                           \\
-                            &=  1 - \sum_{n = 1}^{\infty} \frac{1}{2} \frac{(2n+2)!}{(n+1)! n!}  (z)^{n}                                                           \\
-                            &=  1 - \sum_{n = 1}^{\infty} \frac{1}{2} \binom{2(n+1)}{n+1}  (z)^{n}                                                                 \\
+                                Note that the product in the fraction's numerator is just the product of the first $n-1$ odd numbers, and remember that
+                                the product of the first $n-11$ even numbers can be written as $2^{n-1}(n-1)!$. So, given this, we can write the product of the
+                                first $n-1$ odd numbers as $\frac{(2n-2)!}{2^{n-1}(n-1)!}$. So, we can now write the previous sum as}
+                            &=  1 - \sum_{n = 1}^{\infty} \paren{2^n} \frac{(2n-2)!}{2^{n-1}(n-1)!} \frac{1}{n!} (z)^{n}                                           \\
+                            &=  1 - 2 \sum_{n = 1}^{\infty} \frac{(2n-2)!}{(n-1)! n!}  (z)^{n}                                                           \\
+                            &=  1 - 2 \sum_{n = 1}^{\infty} \frac{(2n-2)!}{(n-1)! (n-1)! } \frac{1}{n}  (z)^{n}                                                           \\
+                            &=  1 - 2 \sum_{n = 1}^{\infty} \binom{2(n-1)}{n-1} \frac{1}{n}  (z)^{n}                                                                 \\
     \end{align}\pn
     
     Now we can rewrite $1 - \sqrt{1 - 4z}$ as
     
     \begin{align}
-            1 - \sqrt{1 - 4z}   &=  1 - \paren{1 -\sum_{n = 1}^{\infty} \frac{1}{2} \binom{2(n+1)}{n+1}  (z)^{n}}      \\
-                                &=  \sum_{n = 1}^{\infty} \frac{1}{2} \binom{2(n+1)}{n+1}  (z)^{n}
-    \end{align}
+            1 - \sqrt{1 - 4z}   &=  1 - \paren{1 - 2 \sum_{n = 1}^{\infty} \binom{2(n-1)}{n-1} \frac{1}{n}  (z)^{n}}      \\
+                                &=  2 \sum_{n = 1}^{\infty} \binom{2(n-1)}{n-1} \frac{1}{n}  (z)^{n}
+    \end{align}\pn
     
     Finally, we can rewrite $\frac{1}{2z} \paren{1 - \sqrt{1 - 4z}}$ as
     
     \begin{align}
-            \frac{1}{2z} \paren{1 - \sqrt{1 - 4z}}  &=  \frac{1}{2z} \sum_{n = 1}^{\infty} \frac{1}{2} \binom{2(n+1)}{n+1}  (z)^{n}     \\
-                                                    &=  \frac{1}{4}  \sum_{n = 1}^{\infty} \frac{1}{2} \binom{2(n+1)}{n+1}  (z)^{n-1}    \\
-                                                    &=  \frac{1}{4}  \sum_{n = 0}^{\infty} \binom{2(n+2)}{n+2}  (z)^{n}     \\
-    \end{align}
+            \frac{1}{2z} \paren{1 - \sqrt{1 - 4z}}  &=  \frac{1}{2z} 2 \sum_{n = 1}^{\infty} \binom{2(n-1)}{n-1} \frac{1}{n}  (z)^{n}   \\
+                                                    &=  \frac{1}{z} \sum_{n = 1}^{\infty} \binom{2(n-1)}{n-1} \frac{1}{n}  (z)^{n}      \\
+                                                    &=  \sum_{n = 1}^{\infty} \binom{2(n-1)}{n-1} \frac{1}{n}  (z)^{n-1}                \\
+                                                    &=  \sum_{n = 0}^{\infty} \binom{2n}{n} \frac{1}{n+1}  (z)^{n}                      \\
+    \end{align}\pn
+    
+    Which is what we were looking for.
 \end{proof}
