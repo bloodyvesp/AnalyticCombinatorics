@@ -1,4 +1,5 @@
 ﻿\chapter{Problem 2}
+\setcounter{theorem}{1}
 \prob{
     Prove that:
     \begin{align}
@@ -7,21 +8,60 @@
 }
 
 \begin{proof}
-    First let remember that if $r \in \R \setminus \Z$, the generalized Newton binomial says:
+    First let remember that if $r \in \R \setminus \Z$, the generalized Newton binomial says that
     
     \begin{align}
-            (x + y)^r = \sum_{k = 0}^{\infty} \binom{r}{k} x^{r-k} y^{k}
+            (x + y)^r = \sum_{n = 0}^{\infty} \binom{r}{n} x^{r-n} y^{n}
     \end{align}\pn
     
-    Where $\binom{r}{k}$ is defined as
+    Where $\binom{r}{n}$ is defined as
+    
     \begin{align}
-            \binom{r}{k} = \frac{r(r-1)\cdots(r-k+1)}{k!}.
+            \binom{r}{n} = \begin{cases}
+                                \frac{r(r-1)\cdots(r-n+1)}{n!} & \text{if } n \geq 1   \\
+                                1                              & \text{if } n = 0   \\
+                           \end{cases}.
     \end{align}\pn
     
-    With this, we can write $\sqrt{1 - 4z}$ as follows:
+    
+    
+    With this, we can write $\sqrt{1 - 4z}$ as follows
+    
     \begin{align}
-            \sqrt{1 - 4z}   &=  \paren{1 - 4z}^{\frac{1}{2}}                                        \\
-                            &=  \sum_{k = 0}^{\infty} \binom{1/2}{k} 1^(\frac{1}{2}-k)(-4z)^{k}     \\
-                            &=  \sum_{k = 0}^{\infty} \binom{1/2}{k} (-4z)^{k}                      \\
+            \sqrt{1 - 4z}   &=  \paren{1 - 4z}^{\frac{1}{2}}                                                                                                    \\
+                            &=  \sum_{n = 0}^{\infty} \binom{\frac{1}{2}}{n} 1^{\frac{1}{2}-n}(-4z)^{n}                                                         \\
+                            &=  \sum_{n = 0}^{\infty} \binom{\frac{1}{2}}{n} (-4z)^{n}                                                                          \\
+                            &\intertext{
+                                Now, note that the firs term in the sum is $1$, so for convenience we will write this term explicitly}                          \\
+                            &=  1 + \sum_{n = 1}^{\infty} \binom{\frac{1}{2}}{n} (-4z)^{n}                                                                          \\
+                            &=  1 + \sum_{n = 1}^{\infty} \frac{ \frac{1}{2} (\frac{1}{2}-1) (\frac{1}{2}-2) \cdots (\frac{1}{2}-(n+1)) }{n!} (-4z)^{n}             \\
+                            &=  1 + \sum_{n = 1}^{\infty} \frac{ \frac{1}{2} (- \frac{1}{2}) (-\frac{3}{2}) \cdots (-\frac{2n + 1}{2}) }{n!} (-4z)^{n}              \\
+                            &=  1 + \sum_{n = 1}^{\infty} (-1)^{n-1} \frac{ \frac{1}{2} (\frac{1}{2}) (\frac{3}{2}) \cdots (\frac{2n + 1}{2}) }{n!} (-4z)^{n}       \\
+                            &=  1 + \sum_{n = 1}^{\infty} (-1)^{(2n-1)} \frac{ \frac{1}{2} (\frac{1}{2}) (\frac{3}{2}) \cdots (\frac{2n + 1}{2}) }{n!} (4z)^{n}     \\
+                            &=  1 - \sum_{n = 1}^{\infty} \paren{\frac{1}{2^n}} \frac{ 1 \cdot 1 \cdot 3 \cdot 5 \cdots (2n + 1) }{n!} (4z)^{n}                    \\
+                            &=  1 - \sum_{n = 1}^{\infty} \paren{\frac{1}{2^n}} \frac{ 1 \cdot 3 \cdot 5 \cdots (2n + 1) }{n!} 2^{2n} (z)^{n}                      \\
+                            &=  1 - \sum_{n = 1}^{\infty} \paren{2^n} \frac{ 1 \cdot 3 \cdot 5 \cdots (2n + 1) }{n!} (z)^{n}                                       \\
+                            &\intertext{
+                                Note that the product in the fraction's numerator is just the product of the first $n+1$ odd numbers, and remember that
+                                the product of the first $n+1$ even numbers can be written as $2^{n+1}(n+1)!$. So, given this, we can write the product of the
+                                first $n+1$ odd numbers as $\frac{(2n+2)!}{2^{n+1}(n+1)!}$. So, we can now write the previous sum as}
+                            &=  1 - \sum_{n = 1}^{\infty} \paren{2^n} \frac{(2n+2)!}{2^{n+1}(n+1)!} \frac{1}{n!} (z)^{n}                                           \\
+                            &=  1 - \sum_{n = 1}^{\infty} \frac{1}{2} \frac{(2n+2)!}{(n+1)! n!}  (z)^{n}                                                           \\
+                            &=  1 - \sum_{n = 1}^{\infty} \frac{1}{2} \binom{2(n+1)}{n+1}  (z)^{n}                                                                 \\
+    \end{align}\pn
+    
+    Now we can rewrite $1 - \sqrt{1 - 4z}$ as
+    
+    \begin{align}
+            1 - \sqrt{1 - 4z}   &=  1 - \paren{1 -\sum_{n = 1}^{\infty} \frac{1}{2} \binom{2(n+1)}{n+1}  (z)^{n}}      \\
+                                &=  \sum_{n = 1}^{\infty} \frac{1}{2} \binom{2(n+1)}{n+1}  (z)^{n}
+    \end{align}
+    
+    Finally, we can rewrite $\frac{1}{2z} \paren{1 - \sqrt{1 - 4z}}$ as
+    
+    \begin{align}
+            \frac{1}{2z} \paren{1 - \sqrt{1 - 4z}}  &=  \frac{1}{2z} \sum_{n = 1}^{\infty} \frac{1}{2} \binom{2(n+1)}{n+1}  (z)^{n}     \\
+                                                    &=  \frac{1}{4}  \sum_{n = 1}^{\infty} \frac{1}{2} \binom{2(n+1)}{n+1}  (z)^{n-1}    \\
+                                                    &=  \frac{1}{4}  \sum_{n = 0}^{\infty} \binom{2(n+2)}{n+2}  (z)^{n}     \\
     \end{align}
 \end{proof}
