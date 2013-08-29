@@ -1,0 +1,73 @@
+﻿\chapter{Problem 3}
+\setcounter{theorem}{2}
+\prob{
+   Let $\mathcal{T}$ be de combinatoric class of the $(n+2)$-polygon triangulation (where $n = 0, 1, 2, \dots$). Find a recursive
+    representation of $\mathcal{T}$. Get an functional equation of this representation. Find the counting sequence.
+}
+
+\begin{proof}
+    Lets make clear one point. These triangulations are ``rooted'', that is, we are going to label one of the polygon edges and
+    we are going to label its vertices (let say, as first and second).\pn
+
+    Now lets define a size function to triangulations as the number of triangles that it contains.
+    To make it easier lets say that the size of the one edge degenerate triangulation is $0$ (that is, the size of all the triangulations
+    of the $2$-polygon). We are going to get rid of this assumption later.\pn
+    
+    Now, there is an easy way to see these rooted triangulations. Lets represent as $\triangle$ the class containing the unique ``rooted'' 
+    triangulation of a triangle. So $\mathcal{T} \times \triangle \times \mathcal{T}$ is a representation of almost all our triangulations.
+    The only problem is that this representation always contains at least one triangle. So we can fix this problem by adding the ``no-triangles''
+    triangulations class $\mathcal{E}$ that consist of only one element of size $0$. So now we can represent 
+    
+    \begin{align}
+        \mathcal{T} = \mathcal{T} \times \triangle \times \mathcal{T} + \mathcal{E}.
+    \end{align}
+    
+    So, our functional equation should satisfy
+    \begin{align}
+        T(z) = T(z)^2 z + 1
+    \end{align}\pn
+    
+    Which lead us to
+    \begin{align}
+        0 = T(z)^2 z - T(z) + 1
+    \end{align}\pn
+    
+    Solving the quadratic for $T(z)$ we get
+    \begin{align}
+        T(z) = \frac{1 \pm \sqrt{1 - 4z}}{2z}
+    \end{align}\pn
+    
+    From the analysis made in the problem [\ref{problem2}], we already know that $\sqrt{1 - 4z}$ can be written as a polynomial with only
+    negative coefficients. But we don't want so, because negative coefficients doesn't mean a thing for us. So from the $\pm$ we are going to
+    take the minus symbol and end up with
+    
+    \begin{align}
+        T(z) = \frac{1 - \sqrt{1 - 4z}}{2z}    
+    \end{align}\pn
+    
+    From problem [\ref{problem2}] we know how to write this as a polynomial. And that is
+    \begin{align}
+            T(z) = \sum_{n=0}^{\infty} \frac{1}{n+1} \binom{2n}{n} z^n
+    \end{align}\pn
+    
+    So, finally, our counting sequence is given by
+    \begin{align}
+            T_n = \frac{1}{n+1} \binom{2n}{n}
+    \end{align}\pn
+    
+    But we have being counting the 2-polygon triangulation. If we want to get rid of it, our recursive representation will be
+    \begin{align}
+        \tilde{\mathcal{T}} = \tilde{\mathcal{T}} \times \triangle + \tilde{\mathcal{T}} \times \triangle \times \tilde{\mathcal{T}} + \triangle \times \tilde{\mathcal{T}} + \triangle
+    \end{align}\pn
+    
+    Where $\tilde{\mathcal{T}}$ represents the class of the triangulations with at least one triangle.\pn
+    
+    Now, the functional equation will be easy to obtain from the previous one. We only want to get rid of the constant term. So
+    \begin{align}
+        \tilde{T}(z)    &=  T(z)-1  \\
+                        &=  \sum_{n=0}^{\infty} \frac{1}{n+1} \binom{2n}{n} z^n - 1 \\
+                        &=  \sum_{n=1}^{\infty} \frac{1}{n+1} \binom{2n}{n} z^n. 
+    \end{align}\pn
+    
+    And our counting sequence remains the same than before except that now $T_0 = 0$ and we are done.
+\end{proof}
