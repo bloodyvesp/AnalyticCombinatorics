@@ -1,0 +1,39 @@
+﻿\chapter{Problem 1}
+\prob{\label{problem2}
+    Let $\c{B}$ a combinatoric class withouth $0$-sized elements. Suppose 
+		\begin{align}
+				\c{M} &= MSet({B})			\\
+				\intertext{\center{y}}	\\
+				\c{P} &= PSet({B}) 
+		\end{align}
+		
+		Prove that:
+		\begin{align}
+				M(z) = P(z)M(z^2).
+		\end{align}
+}
+
+\begin{proof}
+We already know that
+	\begin{align}
+	    M(z) = \prod_{n = 1}^\infty (1 - z^n)^{- B_n}
+	\end{align}
+	
+	and
+	\begin{align}
+	    P(z) = \prod_{n = 1}^\infty (1 + z^n)^{B_n}.
+	\end{align}\pn
+	
+	Where $B_n$ is the amount of elements in $\c{B}$ of size $n$.\pn	
+	
+	Then
+	\begin{align}
+			P(z)M(z^2) 	&=	\paren{\prod_{n = 1}^\infty (1 + z^n)^{B_n}} \cdot \paren{\prod_{n = 1}^\infty (1 - z^{(2n)})^{- B_n}}	\\
+									&=	\prod_{n = 1}^\infty (1 + z^n)^{B_n} (1 - z^{(2n)})^{- B_n}																							\\
+									&=	\prod_{n = 1}^\infty (1 + z^n)^{B_n} \paren{(1 + z^n)(1 - z^n)}^{- B_n}																	\\
+									&=	\prod_{n = 1}^\infty (1 + z^n)^{B_n} (1 + z^n)^{- B_n} (1 - z^n)^{- B_n}																\\
+									&=	\prod_{n = 1}^\infty (1 + z^n)^{B_n - B_n} (1 - z^n)^{- B_n}																						\\
+									&=	\prod_{n = 1}^\infty (1 - z^n)^{- B_n}																																	\\
+									&=	M(z) \qedhere
+	\end{align}
+\end{proof}
