@@ -16,4 +16,34 @@
 }
 
 \begin{proof}
+	Lets contruct the functional equations for each of these cases. That way we will be able to determine if the could be
+	isomorphic or not.
+	
+	For the first one, we have that a binary tree is either a single node, or a node with two binary sub-trees. That is
+	\begin{align}
+			\c{B}	&=	\c{Z} + \c{B} \times \c{Z} \times \c{B}.
+	\end{align}
+	
+	Which give us
+	\begin{align}
+			B(z) = z + B^2(z) z.
+	\end{align}
+	
+	That means
+	\begin{align}
+			B^2(z) z - B(z) + z = 0. 
+	\end{align}
+	
+	This quadratic equation will have the next solution for $B(z)$:
+	\begin{align}
+			\frac{1 \pm \sqrt{1 - 4 z^2}}{2z} = z \frac{1 \pm \sqrt{1 - 4 z^2}}{2z^2}.
+	\end{align}
+	
+	Given that we do not have $0$ sized binary trees and what we know from [\ref{problem2}], we have that the sign is negative and this equation can be written as
+	\begin{align}
+			B(z) 	&= z \sum_{n=1}^\infty \frac{1}{n+1}\binom{2n}{n}z^{2n}	\\
+						&= \sum_{n=1}^\infty \frac{1}{n+1}\binom{2n}{n}z^{2n + 1}
+	\end{align}
+	
+	For the second one, 
 \end{proof}
