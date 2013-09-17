@@ -5,9 +5,9 @@
 		\item 
 			$\c{B} = $ binary trees. Where size means number of nodes.
 		\item 
-			$\c{N} = $ binary collars. Where size means number of beads.
+			$\c{N} = $ binary cycles. Where size means number of beads.
 		\item 
-			$\c{T} = $ triangulations of non-degenerated polygons. Where size means number of triangles.
+			$\c{T} = $ rooted triangulations of non-degenerated polygons. Where size means number of triangles.
 		\item 
 			$\c{G} = $ planar rooted trees. Where size means number of nodes.
 	\end{itemize}
@@ -45,5 +45,85 @@
 						&= \sum_{n=1}^\infty \frac{1}{n+1}\binom{2n}{n}z^{2n + 1}
 	\end{align}
 	
-	For the second one, 
+	For the second case, we have a set $\c{A} = \{a, b\}$ of two beads. Each member of $\c{A}$ will have size $1$, so
+    now we have a combinatoric class with functional equation $A(z) = 2z$.\pn
+    
+    Now our binary cycles will be equivalent to $\c{C} = CYC(\c{A})$. And we already know (From Flajolet-Sedgewick p. 27) that
+    $\c{C}$ has functional equation
+    \begin{align}
+        C(z)    &= \sum_{k = 1}^\infty \frac{\phi(k)}{k} \log \frac{1}{1 - A(z^k)}   \\
+                &= \sum_{k = 1}^\infty \frac{\phi(k)}{k} \log \frac{1}{1 - 2z^k}     \\  
+    \end{align}
+    
+    We have already solved the third case in [\ref{problem3}], and that is.
+    \begin{align}
+        T(z)    &=  \sum_{n=1}^{\infty} \frac{1}{n+1} \binom{2n}{n} z^n. 
+    \end{align}
+    
+    The fourth case is as simple as the third, lets call $\c{P}$ our combinatoric class of planar rooted trees where size means number
+    of nodes. Remember that in a planar tree it does matter the order of children of each node.\pn
+    
+    So, a planar rooted tree, is a root, with a sequence of sub planar rooted trees. That is
+    
+    \begin{align}
+        \c{P}   &= \c{Z} \times SEQ\c{(P)}. 
+    \end{align}\pn
+    
+    Which means
+    \begin{align}
+        P(z)               &=  \frac{z}{1 - P(z)}  \\
+        P(z) - P^2(z) - z  &=  0                   \\
+        P^2(z) - P(z) + z  &=  0                   \\
+    \end{align}\pn
+    
+    Solving for $P(z)$ we obtain
+    \begin{align}
+        P(z) = \frac{1 \pm \sqrt{ 1 - 4z}}{2}
+    \end{align}
+    
+    We already know from [\ref{problem2}] that $\sqrt{ 1 - 4z}$ will give us negative coefficients, so we need to take the minus sign.
+    Using the usual tricks we get
+    \begin{align}
+       P(z)     &=  \frac{1 - \sqrt{ 1 - 4z}}{2}      \\
+                &=  \frac{1 - \sqrt{ 1 - 4z}}{2}      \\
+                &=  z \frac{1 - \sqrt{ 1 - 4z}}{2z}   \\
+    \end{align}
+     Using what we learned from [\ref{problem2}] we get
+    \begin{align}
+       P(z)     &= \sum_{n = 0}^{\infty} \frac{1}{n+1} \binom{2n}{n} z^{n + 1}    \\
+                &= \sum_{n = 1}^{\infty} \frac{1}{n} \binom{2(n-1)}{n-1} z^{n}
+    \end{align}
+    
+    From analysing the functional equations, we can notice that the only two classes that could be related via an isomorfism
+    are the cases $3$ and $4$ (the other two have very different counting terms) but noticing that $[z^{n + 1}] P(z) = [z^n] T(z)$.\pn
+    
+    These means that there are as many planar rooted trees with $n + 1$ nodes as polygon triangulations with $n$ triangles.\pn
+    
+    Remember that a triangulation of a polygon that has $n$ triangles, must have $n + 2$ vertices. So now we are going to talk about
+    the triangulations of the $n$-gon. So translating with this, now we want to show an isomorfism between the planar rooted trees with $n$ nodes
+    and the triangulations of the $n + 1$-gon.\pn
+    
+    This isomorphism is hard to write formally. We are going to give the algorithm to transform a planar rooted tree of $n$ nodes into a triangulation
+    of the $n + 1$-gon and its inverse, but we are going to skip the proof that these algorithms are truly inverse.\pn
+    
+    Let $t$ be a triangulation with $n+1$ vertices, and let its vertices be $x_1, x_2, \dots, x_{n+1}$. Without loss of generality lets say that
+    $(x_{n+1}, x_1)$ is its root.\pn
+    
+    Erase the node $x_{n+1}$ and all the edges that contained it. Then, follow the next algorithm.
+    
+    \begin{enumerate}
+        \item
+            $i = 1.$\pn
+            $E = \emptyset.$
+        
+        \item
+            Take all the edges that contain $x_i$ that don't make cycles with the edges that are already in $E$ and
+            put them in $E$. If $i \neq n$, set $i = i + 1$ and repeat this step. If $i = n$, then the algorithm ends.
+    \end{enumerate}
+    
+    Obviously, we have got a tree rooted in $x_1$ ($x_1$ was labeled with the root edge) with $n$ nodes, we have choosen every edge that 
+    didn't form a cycle with the previous edges so at the end we have got a connected loopless graph, that is, a tree.
+    
+    The inverse algorithm is a little more difficult.
+    
 \end{proof}
