@@ -109,9 +109,11 @@
     Let $t$ be a triangulation with $n+1$ vertices, and let its vertices be $x_1, x_2, \dots, x_{n+1}$. Without loss of generality lets say that
     $(x_{n+1}, x_1)$ is its root.\pn
     
-    Erase the node $x_{n+1}$ and all the edges that contained it. Then, follow the next algorithm.
+    Our algorithm says:
     
     \begin{enumerate}
+        \item 
+            Erase the node $x_{n+1}$ along with all the edges that contained it.
         \item
             $i = 1.$\pn
             $E = \emptyset.$
@@ -122,8 +124,71 @@
     \end{enumerate}
     
     Obviously, we have got a tree rooted in $x_1$ ($x_1$ was labeled with the root edge) with $n$ nodes, we have choosen every edge that 
-    didn't form a cycle with the previous edges so at the end we have got a connected loopless graph, that is, a tree.
+    didn't form a cycle with the previous edges so at the end we have got a connected loopless graph, that is, a tree.\pn
     
-    The inverse algorithm is a little more difficult.
+    Lets see an example.\pn
+    \begin{center}
+        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree1.png}
+    \end{center}
+    
+    So, first we delete the $13th$ node along with all the edges that contain it. 
+    \begin{center}
+        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree2.png}
+    \end{center}
+    
+    Our set of chosen edges is empty and we visit the first node. We choose every edge that contains the first node and that don't make cycles with
+    the other chosen edges (as our set of chosen edges is empty, we can choose every edge that contains the first node). So now we add the edges 
+    $(1, 2), (1, 11)$ to our set of chosen edges.
+    \begin{center}
+        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree3.png}
+    \end{center}
+    
+    Then we visit second node and we choose every edge that contains the second node and that don't make cycles with the other chosen edges. That is, 
+    we choose every edge that contain the second node but $(2, 11)$ cause we would make the cycle $(1, 2, 11)$. 
+    \begin{center}
+        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree4.png}
+    \end{center}
+    
+    Then we visit the 3th node, there are no edges to be chosen.\pn
+    
+    Then we visit the 4th node, there are no edges to be chosen.\pn
+    
+    Then we visit the 5th node, there are no edges to be chosen.\pn
+    
+    Then we visit the 6th node, there are no edges to be chosen.\pn
+    
+    Then we visit the 7th node and we can add $(7, 8)$ and $(7, 9)$
+    \begin{center}
+        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree5.png}
+    \end{center}
+    
+    Then we visit the 8th node, there are no edges to be chosen.\pn
+    
+    Then we visit the 9th node, there are no edges to be chosen.\pn
+    
+    Then we visit the 10th node and we can add $(10, 11)$.\pn
+    \begin{center}
+        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree6.png}
+    \end{center}
+    
+    In the next picture we show the tree obtained
+    \begin{center}
+        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree7.png}
+    \end{center}
+    
+    Now, the inverse algorithm. Lets take a planar rooted tree $p$ with $n$ vertices. 
+    \begin{enumerate}
+        \item 
+            Label its nodes with numbers in order using depth first (to the right), we can do
+            this because for each node, its subtrees are ordered.
+        \item
+            Add a new node and label it with $n+1$.
+        \item
+            Add all the edges that are missing to complete the cycle $(1, 2, 3, \dots, n+1)$.
+        \item
+            If there is a fundamental cycle that is not a triangle, take its node with highest label and lets call it $x$ and
+            for every other node $y$ in the cycle, add an edge (if it doesn't exist already) that joins $x$ and $y$. Repeat this
+            until there are no fundamental cycles that are not triangles.
+    \end{enumerate}
     
 \end{proof}
