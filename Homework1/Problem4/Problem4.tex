@@ -126,54 +126,59 @@
     Obviously, we have got a tree rooted in $x_1$ ($x_1$ was labeled with the root edge) with $n$ nodes, we have choosen every edge that 
     didn't form a cycle with the previous edges so at the end we have got a connected loopless graph, that is, a tree.\pn
     
-    Lets see an example.\pn
+    Lets see an example:\pn
     \begin{center}
-        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree1.png}
+        \includegraphics[width=8cm]{Homework1/Problem4/TriangulationToPlanarRootedTree1.png}
     \end{center}
     
-    So, first we delete the $13th$ node along with all the edges that contain it. 
+    So, first we delete the $12th$ node along with all the edges that contain it. 
     \begin{center}
-        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree2.png}
+        \includegraphics[width=8cm]{Homework1/Problem4/TriangulationToPlanarRootedTree2.png}
     \end{center}
     
     Our set of chosen edges is empty and we visit the first node. We choose every edge that contains the first node and that don't make cycles with
     the other chosen edges (as our set of chosen edges is empty, we can choose every edge that contains the first node). So now we add the edges 
     $(1, 2), (1, 11)$ to our set of chosen edges.
     \begin{center}
-        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree3.png}
+        \includegraphics[width=8cm]{Homework1/Problem4/TriangulationToPlanarRootedTree3.png}
     \end{center}
     
     Then we visit second node and we choose every edge that contains the second node and that don't make cycles with the other chosen edges. That is, 
     we choose every edge that contain the second node but $(2, 11)$ cause we would make the cycle $(1, 2, 11)$. 
     \begin{center}
-        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree4.png}
+        \includegraphics[width=8cm]{Homework1/Problem4/TriangulationToPlanarRootedTree4.png}
     \end{center}
     
-    Then we visit the 3th node, there are no edges to be chosen.\pn
-    
-    Then we visit the 4th node, there are no edges to be chosen.\pn
-    
-    Then we visit the 5th node, there are no edges to be chosen.\pn
-    
-    Then we visit the 6th node, there are no edges to be chosen.\pn
-    
-    Then we visit the 7th node and we can add $(7, 8)$ and $(7, 9)$
+    Then we visit the 3th node and we add $(3, 4)$.
     \begin{center}
-        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree5.png}
+        \includegraphics[width=8cm]{Homework1/Problem4/TriangulationToPlanarRootedTree5.png}
     \end{center}
     
-    Then we visit the 8th node, there are no edges to be chosen.\pn
+    Then we visit the $4th$ node, there are no edges to be chosen.\pn
     
-    Then we visit the 9th node, there are no edges to be chosen.\pn
+    Then we visit the $5th$ node, there are no edges to be chosen.\pn
     
-    Then we visit the 10th node and we can add $(10, 11)$.\pn
+    Then we visit the $6th$ node, there are no edges to be chosen.\pn
+    
+    Then we visit the $7th$ node and we can add $(7, 8)$ and $(7, 9)$
     \begin{center}
-        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree6.png}
+        \includegraphics[width=8cm]{Homework1/Problem4/TriangulationToPlanarRootedTree6.png}
     \end{center}
     
-    In the next picture we show the tree obtained
+    Then we visit the $8th$ node, there are no edges to be chosen.\pn
+    
+    Then we visit the $9th$ node, there are no edges to be chosen.\pn
+    
+    Then we visit the $10th$ node and we can add $(10, 11)$.\pn
     \begin{center}
-        \includegraphics[width=9cm]{Homework1/Problem4/TriangulationToPlanarRootedTree7.png}
+        \includegraphics[width=8cm]{Homework1/Problem4/TriangulationToPlanarRootedTree7.png}
+    \end{center}
+    
+    Then we visit the $11th$ node, there are no edges to be chosen.\pn
+    
+    In the next picture we show the obtained tree. 
+    \begin{center}
+        \includegraphics[width=8cm]{Homework1/Problem4/TriangulationToPlanarRootedTree8.png}
     \end{center}
     
     Now, the inverse algorithm. Lets take a planar rooted tree $p$ with $n$ vertices. 
@@ -191,4 +196,50 @@
             until there are no fundamental cycles that are not triangles.
     \end{enumerate}
     
+    Lets see an example starting with the same tree that we obtained from the previous example:
+    \begin{center}
+        \includegraphics[width=8cm]{Homework1/Problem4/PlanarRootedTreeToTriangulation1.png}
+    \end{center}
+    
+    We numerate the nodes using depth first (to the right).
+    
+    \begin{center}
+        \includegraphics[width=8cm]{Homework1/Problem4/PlanarRootedTreeToTriangulation2.png}
+    \end{center}
+    
+    We add a $12th$ node.
+    
+    \begin{center}
+        \includegraphics[width=8cm]{Homework1/Problem4/PlanarRootedTreeToTriangulation3.png}
+    \end{center}
+    
+    We complete the cycle $(1, 2, \dots, 12)$.
+    
+    \begin{center}
+        \includegraphics[width=8cm]{Homework1/Problem4/PlanarRootedTreeToTriangulation4.png}
+    \end{center}
+    
+    The fundamental cycle $(2, 3, 4, 5)$ is not a triangle, the leading node is 5, and then we
+    add every missing edge that contains the $5th$ node and any other vertex in this cycle. 
+    The only missing edge is $(5, 3)$.
+    \begin{center}
+        \includegraphics[width=8cm]{Homework1/Problem4/PlanarRootedTreeToTriangulation5.png}
+    \end{center}
+    
+    
+    The fundamental cycle $(1, 2, 7, 9, 10)$ is not a triangle, the leading node is $10$, and then
+    we add every missing edge that contains the $10th$ node and any other vertex in this cycle.
+    The missing edges are $(10, 7)$ and $(10, 2)$.
+    \begin{center}
+        \includegraphics[width=8cm]{Homework1/Problem4/PlanarRootedTreeToTriangulation6.png}
+    \end{center}
+    
+    The fundamental cycle $(1, 10, 11, 12)$ is not a triangle, the leading node is 12, and then we
+    add every missing edge that contains the $12th$ node and any other vertex in this cycle. 
+    The only missing edge is $(12, 10)$.
+    \begin{center}
+        \includegraphics[width=8cm]{Homework1/Problem4/PlanarRootedTreeToTriangulation7.png}
+    \end{center}
+    
+    You can verify that at least in these example we obtained the same triangulation that we begin with.
 \end{proof}
