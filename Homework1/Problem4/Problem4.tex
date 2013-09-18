@@ -113,14 +113,14 @@
     
     \begin{enumerate}
         \item 
-            Erase the node $x_{n+1}$ along with all the edges that contained it.
+            Erase the node $x_{n+1}$ along with all the edges that contain it.
         \item
             $i = 1.$\pn
             $E = \emptyset.$
         
         \item
             Take all the edges that contain $x_i$ that don't make cycles with the edges that are already in $E$ and
-            put them in $E$. If $i \neq n$, set $i = i + 1$ and repeat this step. If $i = n$, then the algorithm ends.
+            add them to in $E$. If $i \neq n$, set $i = i + 1$ and repeat this step. If $i = n$, then the algorithm ends.
     \end{enumerate}
     
     Obviously, we have got a tree rooted in $x_1$ ($x_1$ was labeled with the root edge) with $n$ nodes, we have choosen every edge that 
