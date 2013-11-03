@@ -1,14 +1,14 @@
-﻿\chapter{Problem 4}
-\prob{\label{problem4}
+﻿\section{Problem 4}
+\prob{\label{h1:problem4}
 	Consider the next combinatorial classes:
 	\begin{itemize}
-		\item 
+		\item[a)] 
 			$\c{B} = $ binary trees. Where size means number of nodes.
-		\item 
+		\item[b)] 
 			$\c{N} = $ binary cycles. Where size means number of beads.
-		\item 
+		\item[c)] 
 			$\c{T} = $ rooted triangulations of non-degenerated polygons. Where size means number of triangles.
-		\item 
+		\item[d)] 
 			$\c{G} = $ planar rooted trees. Where size means number of nodes.
 	\end{itemize}
 		
@@ -19,7 +19,7 @@
 	Lets contruct the functional equations for each of these cases. That way we will be able to determine if the could be
 	isomorphic or not.
 	
-	For the first one, we have that a binary tree is either a single node, or a node with two binary sub-trees. That is
+	For the first one [\textbf{a)}], we have that a binary tree is either a single node, or a node with two binary sub-trees. That is
 	\begin{align}
 			\c{B}	&=	\c{Z} + \c{B} \times \c{Z} \times \c{B}.
 	\end{align}
@@ -39,13 +39,13 @@
 			\frac{1 \pm \sqrt{1 - 4 z^2}}{2z} = z \frac{1 \pm \sqrt{1 - 4 z^2}}{2z^2}.
 	\end{align}
 	
-	Given that we do not have $0$ sized binary trees and what we know from [\ref{problem2}], we have that the sign is negative and this equation can be written as
+	Given that we do not have $0$ sized binary trees and what we know from [\ref{h1:problem2}], we have that the sign is negative and this equation can be written as
 	\begin{align}
 			B(z) 	&= z \sum_{n=1}^\infty \frac{1}{n+1}\binom{2n}{n}z^{2n}	\\
 						&= \sum_{n=1}^\infty \frac{1}{n+1}\binom{2n}{n}z^{2n + 1}
 	\end{align}
 	
-	For the second case, we have a set $\c{A} = \{a, b\}$ of two beads. Each member of $\c{A}$ will have size $1$, so
+	For the second case [\textbf{b)}], we have a set $\c{A} = \{a, b\}$ of two beads. Each member of $\c{A}$ will have size $1$, so
     now we have a combinatoric class with functional equation $A(z) = 2z$.\pn
     
     Now our binary cycles will be equivalent to $\c{C} = CYC(\c{A})$. And we already know (From Flajolet-Sedgewick p. 27) that
@@ -55,12 +55,12 @@
                 &= \sum_{k = 1}^\infty \frac{\phi(k)}{k} \log \frac{1}{1 - 2z^k}     \\  
     \end{align}
     
-    We have already solved the third case in [\ref{problem3}], and that is.
+    We have already solved the third case [\textbf{c)}] in [\ref{problem3}], and that is.
     \begin{align}
         T(z)    &=  \sum_{n=1}^{\infty} \frac{1}{n+1} \binom{2n}{n} z^n. 
     \end{align}
     
-    The fourth case is as simple as the third, lets call $\c{P}$ our combinatoric class of planar rooted trees where size means number
+    The fourth case [\textbf{d)}] is as simple as the third one [\textbf{c)}], lets call $\c{P}$ our combinatoric class of planar rooted trees where size means number
     of nodes. Remember that in a planar tree it does matter the order of children of each node.\pn
     
     So, a planar rooted tree, is a root, with a sequence of sub planar rooted trees. That is
@@ -81,14 +81,14 @@
         P(z) = \frac{1 \pm \sqrt{ 1 - 4z}}{2}
     \end{align}
     
-    We already know from [\ref{problem2}] that $\sqrt{ 1 - 4z}$ will give us negative coefficients, so we need to take the minus sign.
+    We already know from [\ref{h1:problem2}] that $\sqrt{ 1 - 4z}$ will give us negative coefficients, so we need to take the minus sign.
     Using the usual tricks we get
     \begin{align}
        P(z)     &=  \frac{1 - \sqrt{ 1 - 4z}}{2}      \\
                 &=  \frac{1 - \sqrt{ 1 - 4z}}{2}      \\
                 &=  z \frac{1 - \sqrt{ 1 - 4z}}{2z}   \\
     \end{align}
-     Using what we learned from [\ref{problem2}] we get
+     Using what we learned from [\ref{h1:problem2}] we get
     \begin{align}
        P(z)     &= \sum_{n = 0}^{\infty} \frac{1}{n+1} \binom{2n}{n} z^{n + 1}    \\
                 &= \sum_{n = 1}^{\infty} \frac{1}{n} \binom{2(n-1)}{n-1} z^{n}
