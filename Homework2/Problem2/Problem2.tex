@@ -4,7 +4,7 @@
     \begin{itemize}
         \item[a)]
             \begin{align}
-                \frac{z^20}{1 - \frac{1}{1 - z - z^5 - z^10 - z^15}}
+                \frac{z^{20}}{1 - \frac{1}{1 - z - z^5 - z^{10} - z^{15}}}
             \end{align}
         \item[b)]
             \begin{align}
@@ -14,4 +14,54 @@
 }
 
 \begin{proof}
+    \begin{itemize}
+        \item[a)]
+            First of all, let's make clear that the given function cannot be an ordinary generating function, since its coiefficient for $z^0$ is not even
+            real!. You can see it clearly if you try to evaluate the function for $z=0$.\pn
+            
+            I'll continue to solve this excercies despite that previous point made clear trying to follow the idea that I suppose was begind the
+            excercise. Let's rewritte the given ordinary generating function as follows:
+            \begin{align}
+                \frac{z^{20}}{1 - \frac{1}{1 - (z + z^5 + z^{10} + z^{15})}}
+            \end{align}\pn
+            
+            Now, let $\c{Z}$ be an atomic class as usual. Then, from \eqref{flajolet27} we can see that
+            \begin{align}
+                    \c{A}_1 = SUC_{=1,5,10,15}(\c{Z})   &\Longrightarrow                \\
+                    A_1(z)                              &= z + z^5 + z^{10} + z^{15}
+            \end{align}\pn
+            
+            And again from \eqref{flajolet27} we have that
+            \begin{align}
+                    \c{A}_2 = SUC\paren{\c{A}_1}    &\Longrightarrow                            \\
+                    A_2(z)                          &= \frac{1}{1 - A_1(z)}                     \\
+                                                    &= \frac{1}{1 - (z + z^5 + z^{10} + z^15)}
+            \end{align}\pn
+            
+            Once again, from \eqref{flajolet27} we obtain
+            \begin{align}
+                    \c{A}_3 = SUC\paren{\c{A}_2}    &\Longrightarrow                                            \\
+                    A_3(z)                          &= \frac{1}{1 - A_2(z)}                                     \\
+                                                    &= \frac{1}{1 - \frac{1}{1 - (z + z^5 + z^{10} + z^{15})}}
+            \end{align}
+            
+            (Here we have serious issues, we can get $SUC$ from a combinatorial class whose zero sized elements are more than zero, this is why this function
+            will not be an ordinary generating function).
+            
+            Finally, and again from \eqref{flajolet27} we easily see that
+            \begin{align}
+                    \c{A}_4 = \c{Z}^{20} \times \c{A}_3   &\Longrightarrow                                               \\
+                    A_4(z)                              &= z^20 \cdot A_3(z)                                             \\
+                                                        &= \frac{z^20}{1 - \frac{1}{1 - (z + z^5 + z^{10} + z^{15})}}.
+            \end{align}
+            
+            From here, we can reconstruct the ``combinatoric'' class that we were looking for.
+            \begin{align}
+                    \c{A}_4     &=  \c{Z}^{20} \times \c{A}_3                                           \\
+                                &=  \c{Z}^{20} \times SUC\paren{\c{A}_2}                                \\
+                                &=  \c{Z}^{20} \times SUC\paren{SUC\paren{\c{A}_1}}                     \\
+                                &=  \c{Z}^{20} \times SUC\paren{SUC\paren{SUC_{=1,5,10,15}(\c{Z})}}    
+            \end{align}
+        \item[b)]
+    \end{itemize}
 \end{proof}
