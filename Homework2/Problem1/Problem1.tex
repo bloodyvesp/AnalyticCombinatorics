@@ -4,14 +4,81 @@
     $\c{E}$ is the neutral class and $\c{Z}$ is the atomic class:
 	\begin{itemize}
 		\item[a)] 
-			$SUC_{\geq r}\paren{ \c{E} + \c{Z}^2 }$.
+			$SEQ_{\geq r}\paren{ \c{E} + \c{Z}^2 }$.
         \item[b)] 
-			$POT\paren{ SUC_{\leq 4} \paren{\c{Z}} \times \c{Z} \times SUC_{=3,5,7}\paren{ \c{Z} + \c{Z} } }$.
+			$PSET\paren{ SEQ_{\leq 4} \paren{\c{Z}} \times \c{Z} \times SEQ_{=3,5,7}\paren{ \c{Z} + \c{Z} } }$.
         \item[c)] 
-			$MUCON\paren{ POT\paren{ \c{Z} \times SUC_{\{ 2n | n \in \N \}}\paren{\c(Z) } } }$.
+			$MSET\paren{ PSET\paren{ \c{Z} \times SEQ_{\{ 2n | n \in \N \}}\paren{\c(Z) } } }$.
     \end{itemize}
 }
 
 \begin{proof}
-    The proof.
+    Let's remember, from Flajolet-Sedgewick p. 27, the next results that will be pretty useful.
+    
+    If $\c{B}, \c{C}$ are combinatoric classes, and $B(z)$, $C(z)$ their respective ordinary generating functions, then
+    
+    \begin{align}\label{flajolet27}
+            \c{A} = \c{B} + \c{C}       &&& \Longrightarrow &&   A(z) = B(z) + C(z)                                                          \\
+            \c{A} = \c{B} \times \c{C}  &&& \Longrightarrow &&   A(z) = B(z) \cdot C(z)                                                      \\
+            \c{A} = SEQ(\c{B})          &&& \Longrightarrow &&   A(z) = \frac{1}{1 - B(z)}                                                   \\
+            \c{A} = PSET(\c{B})         &&& \Longrightarrow &&   A(z) = \begin{cases}
+                                                                            \prod_{n \geq 1} \paren{1 + z^n}^{B_n}                      \\
+                                                                                                                                        \\
+                                                                            \exp\paren{ \sum_{k=1}^\infty \frac{(-1)^{k-1}}{k}B(z^k)}
+                                                                       \end{cases}                                                          \\
+            \c{A} = MSET(\c{B})         &&& \Longrightarrow &&   A(z) = \begin{cases}
+                                                                            \prod_{n \geq 1} \paren{1 - z^n}^{-B_n}                      \\
+                                                                                                                                         \\
+                                                                            \exp\paren{ \sum_{k=1}^\infty \frac{B(z^k)}{k}}
+                                                                       \end{cases}                                                          \\
+    \end{align}
+    
+    Using this, and given that the generating functions for $\c{E}$ and $\c{Z}$ are $1$ and $z$ respectively, to construct the asked 
+    generating functions will be easy.
+    
+    \begin{itemize}
+        \item[a)]
+            \begin{align}
+                    \c{A} = 
+                    SEQ_{\geq r}\paren{ \c{E} + \c{Z}^2 } 
+                    \Longrightarrow   
+                    A(z) = \frac{\paren{1 + z^2}^r}{-z^2}
+            \end{align}
+        \item[b)]
+            For this one we are going to take care of the $SEQ$'s inside the $PSET$ first.
+            \begin{align}
+                \c{A}_2 = SEQ_{\leq 4} \paren{\c{Z}} \Longrightarrow A_1(z) &= 1 + z + z^2 + z^3 + z^4.
+            \end{align}
+            
+            and
+            
+            \begin{align}
+                \c{A}_2 = SEQ_{=3,5,7}\paren{ \c{Z} + \c{Z} } \Longrightarrow A_2(z)    &=  (2z)^3 + (2z)^5 + (2z)^7 \\
+                                                                                    8z^3 + 32z^5 + 128z^7
+            \end{align}
+            
+            then, we multiply $z$, $A_1(z)$ and $A_2(z)$ to obtain 
+            \begin{align}
+                z \cdot \c{A}_1(z) \cdot \c{A}_2(z) &= (z) \cdot (1 + z + z^2 + z^3 + z^4) \cdot (8z^3 + 32z^5 + 128z^7)                    \\
+                                                    &= (z + z^2 + z^3 + z^4 + z^5) \cdot (8z^3 + 32z^5 + 128z^7)                            \\
+                                                    &= (8z^4 + 32z^6 + 128z^8) + (8z^5 + 32z^7 + 128z^9) + (8z^6 + 32z^8 + 128z^{10})       \\
+                                                    &\;\;    + (8z^7 + 32z^9 + 128z^{11}) + (8z^8 + 32z^{10} + 128z^{12})                   \\ 
+                                                    &=  8x^4 + 8x^5 + 40x^6 + 40x^7 + 168x^8 + 160x^9 + 160x^{10} + 128x^{11} + 128x^{12}   \\
+            \end{align}
+
+            Finally, we only need to apply the result for the $PSET$ combinatoric class in \eqref{flajolet27}
+            
+            \begin{align}
+                    \c{A} &= 
+                    PSET\paren{ SEQ_{\leq 4} \paren{\c{Z}} \times \c{Z} \times SEQ_{=3,5,7}\paren{ \c{Z} + \c{Z} } } \Longrightarrow \\
+                    A(z) &= (1 + z^4)^{8}(1 + z^5)^{8}(1 + z^6)^{40}(1 + z^7)^{40}(1 + z^8)^{168}(1 + z^9)^{160}(1 + z^{10})^{160}(1 + z^{11})^{128}(1 + z^{12})^{128}                   
+            \end{align}
+            
+        \item[c)]
+            \begin{align}
+                    \c{A} = 
+                    MSET\paren{ PSET\paren{ \c{Z} \times SEQ_{\{ 2n | n \in \N \}}\paren{\c(Z) } } }
+                    \Longrightarrow
+            \end{align}
+    \end{itemize}
 \end{proof}
