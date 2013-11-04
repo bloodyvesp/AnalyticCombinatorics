@@ -8,7 +8,7 @@
         \item[b)] 
 			$PSET\paren{ SEQ_{\leq 4} \paren{\c{Z}} \times \c{Z} \times SEQ_{=3,5,7}\paren{ \c{Z} + \c{Z} } }$.
         \item[c)] 
-			$MSET\paren{ PSET\paren{ \c{Z} \times SEQ_{\{ 2n | n \in \N \}}\paren{\c(Z) } } }$.
+			$MSET\paren{ PSET_{\geq 1}\paren{ \c{Z} \times SEQ_{\{ 2n | n \in \N \}}\paren{\c{Z} } } }$.
     \end{itemize}
 }
 
@@ -75,10 +75,28 @@
             \end{align}
             
         \item[c)]
+            Again, let's proceed solving the generating functions for the nested classes first.
+            
+            \begin{align}
+                    \c{A}_1 =   SEQ_{\{ 2n | n \in \N \}}\paren{\c{Z}}  &   \Longrightarrow \\
+                    A_1(z)                                              &=  \sum_{n \in \N} z^{2n}
+            \end{align}
+        
+            \begin{align}
+                    \c{A}_2 = \c{Z} \times SEQ_{\{ 2n | n \in \N \}}\paren{\c{Z}}   &   \Longrightarrow                 \\
+                    A_2(z)                                                          &= z \cdot \sum_{n \in \N} z^{2n}   \\
+                                                                                    &= \sum_{n \in \N} z^{2n+1} 
+            \end{align}
+            
+            \begin{align}
+                    \c{A}_3 = PSET_{\geq 1}\paren{ \c{Z} \times SEQ_{\{ 2n | n \in \N \}}\paren{\c{Z}} } &\Longrightarrow        \\
+                    A_3(z)                                                                      &= \prod_{n \in \N} (1 + z^{2n + 1}) - 1
+            \end{align}
+           
             \begin{align}
                     \c{A} = 
-                    MSET\paren{ PSET\paren{ \c{Z} \times SEQ_{\{ 2n | n \in \N \}}\paren{\c(Z) } } }
-                    \Longrightarrow
+                    MSET\paren{ PSET\paren{ \c{Z} \times SEQ_{\{ 2n | n \in \N \}}\paren{\c{Z}} } } &\Longrightarrow    \\
+                    A(z) = \exp\paren{ \sum_{k=1}^\infty \frac{\prod_{n \in \N} (1 + z^{k(2n + 1)}) - 1}{k}}
             \end{align}
     \end{itemize}
 \end{proof}
